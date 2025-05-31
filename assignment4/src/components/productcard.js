@@ -3,7 +3,7 @@ import React,{useState} from 'react';
 const ProductCard = ({ data }) => {
   const [showFull, setShowFull] = useState(false);
   const { description } = data;
-  const isLong = description.length > 100;
+  const isLong = description.length > 25;
   return (
     <div className="card">
       <img src={data.thumbnail} alt={data.title} />
