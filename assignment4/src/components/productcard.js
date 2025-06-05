@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import { Link } from 'react-router-dom';
 
 const ProductCard = ({ data }) => {
   const [showFull, setShowFull] = useState(false);
@@ -6,8 +7,10 @@ const ProductCard = ({ data }) => {
   const isLong = description.length > 25;
   return (
     <div className="card">
-      <img src={data.thumbnail} alt={data.title} />
-      <h2>{data.title}</h2>
+      <Link to={`/product/${data.id}`}style={{ textDecoration: 'none', color: 'black' }}>
+        <img src={data.thumbnail} alt={data.title}/>
+        <h2>{data.title}</h2>
+      </Link>
       <p className="product-description">
         {showFull ? description : description.slice(0, 100)}
         {isLong && !showFull && '...'}

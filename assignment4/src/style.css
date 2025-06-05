@@ -52,3 +52,16 @@ button:disabled {
   background-color: #aaa;
   cursor: not-allowed;
 }
+.footer {
+  background-color: #3c6caa;
+  color: rgb(233, 233, 233);
+  text-align: center;
+  padding: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.socials a {
+  color: rgb(213, 211, 211);
+  margin: 0 0.5rem;
+  text-decoration: none;
+}

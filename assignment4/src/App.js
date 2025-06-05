@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from './components/navbar';
 import ProductCard from './components/productcard';
-
+import { Routes, Route } from 'react-router-dom';
+import Footer from './components/footer';
+import ProductDetail from './components/productdetail';
 const App = () => {
   const [products,setProducts]=useState([]);
   const [currentPage,setCurrentPage]=useState(1);
@@ -19,28 +21,37 @@ const App = () => {
   return (
     <div>
       <Navbar />
-      <div className="products-container">
-        {currentProducts.map(product => (
-          <ProductCard key={product.id} data={product} />
-        ))}
-      </div>
-      <div style={{textAlign:'center',margin:'1rem 0'}}>
-        <button
-          onClick={()=>setCurrentPage(prev=>Math.max(prev-1,1))}
-          disabled={currentPage===1}
-        >
-          Prev
-        </button>
-        <span style={{margin:'0 1rem'}}>
-          Page {currentPage} of {totalPages}
-        </span>
-        <button
-          onClick={()=>setCurrentPage(prev=>Math.min(prev+1,totalPages))}
-          disabled={currentPage===totalPages}
-        >
-          Next
-        </button>
-      </div>
+      <Routes>
+        <Route path="/" element={
+            <>
+              <div className="products-container">
+                {currentProducts.map(product => (
+                  <ProductCard key={product.id} data={product} />
+                ))}
+              </div>
+              <div style={{ textAlign: 'center', margin: '1rem 0' }}>
+                <button
+                  onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                  disabled={currentPage === 1}
+                >
+                  Prev
+                </button>
+                <span style={{ margin: '0 1rem' }}>
+                  Page {currentPage} of {totalPages}
+                </span>
+                <button
+                  onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                  disabled={currentPage === totalPages}
+                >
+                  Next
+                </button>
+              </div>
+            </>
+          }
+        />
+        <Route path="/product/:id" element={<ProductDetail />} />
+      </Routes>
+      <Footer/>
     </div>
   );
 };
